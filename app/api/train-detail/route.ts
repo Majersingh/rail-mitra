@@ -227,7 +227,7 @@ export async function GET(req: NextRequest) {
     );
 
     return NextResponse.json(detail, {
-      headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" },
+      // headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" },
     });
   } catch (err) {
     console.error("train-detail error:", err);
