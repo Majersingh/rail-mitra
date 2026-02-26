@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const { trainNo, jDate, boardingStation } = body;
-
+  console.log("Got train compoistion request")
   try {
     const res = await fetch("https://www.irctc.co.in/online-charts/api/trainComposition", {
       "headers": {
@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
     });
 
     const data = await res.json();
+    console.log("train compoistion response",data)
     return NextResponse.json(data);
   } catch (err) {
     console.error("Train composition error:", err);
