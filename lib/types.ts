@@ -26,6 +26,8 @@ export interface StationStop {
 }
 
 export interface TrainDetail {
+  stationFrom:string;
+  stattionTo:string;
   trainNumber: string;
   trainName: string;
   trainRunsOnMon: string;

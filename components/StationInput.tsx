@@ -15,7 +15,7 @@ export default function StationInput({ label, placeholder, value, onChange }: Pr
   const [results, setResults] = useState<Station[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const fetchStations = useCallback(async (q: string) => {
@@ -38,7 +38,7 @@ export default function StationInput({ label, placeholder, value, onChange }: Pr
     setQuery(val);
     if (value) onChange(null); // clear selection on re-type
 
-    clearTimeout(debounceRef.current);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => fetchStations(val), 300);
   };
 
